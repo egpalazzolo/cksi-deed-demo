@@ -7,6 +7,7 @@ subject,Subjects,true,,DCTERMS.subject,keywords
 location,Location,,,,contentLocation
 latitude,Latitude,,,,
 longitude,Longitude,,,,
+publisher-digital,Digital Publisher,,,,
 source,Source,,,,
 identifier,Source Identifier,,,,
 type,Type,,,DCTERMS.type,
