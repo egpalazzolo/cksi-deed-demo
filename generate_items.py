@@ -14,16 +14,16 @@ with open(csv_file, newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         objectid = row["objectid"].strip()
-        pdf_filename = row["pdf_filename"].strip()
+        pdf_filename = row["pdffilename"].strip()
 
         # Only include if the PDF file actually exists
         if os.path.exists(os.path.join(pdf_folder, pdf_filename)):
             items.append({
                 "objectid": objectid,
-                "pdf_filename": pdf_filename
+                "pdffilename": pdffilename
             })
         else:
-            print(f"Warning: PDF '{pdf_filename}' not found for objectid '{objectid}'")
+            print(f"Warning: PDF '{pdffilename}' not found for objectid '{objectid}'")
 
 # Ensure _data folder exists
 os.makedirs("_data", exist_ok=True)
