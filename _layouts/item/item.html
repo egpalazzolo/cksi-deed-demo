@@ -1,6 +1,4 @@
 ---
-# Generic fallback item page layout 
-# Displays image or icon depending on "image_thumb"
 layout: item/item-page-base
 ---
 
@@ -9,12 +7,8 @@ layout: item/item-page-base
 <div class="card mb-4 text-center">
 
     <div>
-        {%- comment -%}
-          Construct PDF path. This assumes PDFs are in /objects/pdfs/<objectid>.pdf
-          Adjust folder if your PDFs are elsewhere.
-        {%- endcomment -%}
-        {% if page.objectid %}
-            {% assign pdf_path = '/objects/pdfs/' | append: page.objectid | append: '.pdf' %}
+        {% if page.pdf_filename %}
+            {% assign pdf_path = '/objects/pdfs/' | append: page.pdf_filename | append: '.pdf' %}
             {% include pdfjs-viewer.html pdf_url=pdf_path %}
         {% else %}
             <p><em>No PDF available for this item.</em></p>
@@ -25,9 +19,15 @@ layout: item/item-page-base
         <p>
             {% include item/item-thumb.html %}
         </p>
+
         <div class="mt-2">
             {% include item/download-buttons.html %}
         </div>
+
+        {% if page.pdf_filename %}
+            {% assign pdf_path = '/objects/pdfs/' | append: page.pdf_filename | append: '.pdf' | relative_url %}
+            <p><a href="{{ pdf_path }}" target="_blank" class="btn btn-primary">Download PDF</a></p>
+        {% endif %}
     </div>
 
 </div>
