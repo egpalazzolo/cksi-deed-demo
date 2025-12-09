@@ -74,7 +74,7 @@ organization-logo-nav: https://www.lib.uidaho.edu/collectionbuilder/cdil-white.p
 lib-assets: /assets/lib
 
 include:
-  - objects/pdfs
+  - /objects/pdfs
 # ignore stuff  
 exclude: [docs/, Rakefile, rakelib/, README.md, LICENSE, CITATION.cff, CODE_OF_CONDUCT.md, CONTRIBUTING.md, SECURITY.md]
 # compress CSS output

@@ -1,16 +1,24 @@
 {% comment %}
-  PDF.js viewer include
-  Usage:
-    {% include pdfjs-viewer.html pdf_url=pdf_path %}
+PDF.js viewer include.
+Pass the full PDF path as pdf_file:
+  {% include pdfjs-viewer.html pdf_file=pdf_path %}
 {% endcomment %}
 
-{% if include.pdf_url %}
+{% if include.pdf_file %}
+  <!-- PDF.js iframe -->
   <iframe
-    src="{{ '/assets/pdfjs/web/viewer.html?file=' | append: include.pdf_url | relative_url | uri_escape }}"
+    src="{{ '/assets/pdfjs/web/viewer.html' | relative_url }}?file={{ include.pdf_file | relative_url | uri_escape }}"
     width="100%"
     height="800px"
     style="border:none;">
   </iframe>
+
+  <!-- Optional "Open in new tab" link -->
+  <p>
+    <a href="{{ include.pdf_file | relative_url }}" target="_blank" class="btn btn-primary">
+      Open PDF in new tab
+    </a>
+  </p>
 {% else %}
   <p><em>No PDF available for this item.</em></p>
 {% endif %}

@@ -2,36 +2,22 @@
 layout: item/item-page-base
 ---
 
-</div>
-
 <div class="card mb-4 text-center">
+  {% if page.pdffilename %}
+    {% assign pdf_path = '/objects/pdfs/' | append: page.pdffilename %}
+    {% include pdfjs-viewer.html pdf_file=pdf_path %}
+  {% else %}
+    <p><em>No PDF available for this item.</em></p>
+  {% endif %}
 
-    <div>
-        {% if page.pdf_filename %}
-            {% assign pdf_path = '/objects/pdfs/' | append: page.pdf_filename | append: '.pdf' %}
-            {% include pdfjs-viewer.html pdf_url=pdf_path %}
-        {% else %}
-            <p><em>No PDF available for this item.</em></p>
-        {% endif %}
+  <div class="card-body">
+    {% include item/item-thumb.html %}
+    <div class="mt-2">
+      {% include item/download-buttons.html %}
     </div>
-    
-    <div class="card-body">
-        <p>
-            {% include item/item-thumb.html %}
-        </p>
-
-        <div class="mt-2">
-            {% include item/download-buttons.html %}
-        </div>
-
-        {% if page.pdf_filename %}
-            {% assign pdf_path = '/objects/pdfs/' | append: page.pdf_filename | append: '.pdf' | relative_url %}
-            <p><a href="{{ pdf_path }}" target="_blank" class="btn btn-primary">Download PDF</a></p>
-        {% endif %}
-    </div>
-
+  </div>
 </div>
 
 <div class="mt-4">
-    {% include item/item-metadata.html %}
+  {% include item/item-metadata.html %}
 </div>
