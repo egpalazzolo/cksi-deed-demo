@@ -20,7 +20,11 @@ item-meta: true
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">
 
-        {{ content }}
+
+            {% assign pdf_path = '/objects/' | append: page.objectid | append: '.pdf' %}
+
+            {% include pdfjs-viewer.html pdf_url=pdf_path %}
+
 
         </div>
 

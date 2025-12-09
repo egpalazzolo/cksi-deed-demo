@@ -1,20 +1,35 @@
 ---
-# generic fallback item page layout 
-# displays image or icon depending on "image_thumb"
+# Generic fallback item page layout 
+# Displays image or icon depending on "image_thumb"
 layout: item/item-page-base
 ---
 
+</div>
+
 <div class="card mb-4 text-center">
+
+    <div>
+        {%- comment -%}
+          Construct PDF path. This assumes PDFs are in /objects/pdfs/<objectid>.pdf
+          Adjust folder if your PDFs are elsewhere.
+        {%- endcomment -%}
+        {% if page.objectid %}
+            {% assign pdf_path = '/objects/pdfs/' | append: page.objectid | append: '.pdf' %}
+            {% include pdfjs-viewer.html pdf_url=pdf_path %}
+        {% else %}
+            <p><em>No PDF available for this item.</em></p>
+        {% endif %}
+    </div>
+    
     <div class="card-body">
-        
         <p>
             {% include item/item-thumb.html %}
         </p>
         <div class="mt-2">
             {% include item/download-buttons.html %}
         </div>
-
     </div>
+
 </div>
 
 <div class="mt-4">
